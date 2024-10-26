@@ -10,16 +10,16 @@ export default function Layout({children}){
     <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
     </Link>
     <Link href={`/admin/courses`}>
-    <TabsTrigger value="courses">course</TabsTrigger>
+    <TabsTrigger value="courses">Course</TabsTrigger>
     </Link>
     <Link href={`/admin/trainers`}>
-    <TabsTrigger value="trainers">trainers</TabsTrigger>
+    <TabsTrigger value="trainers">Trainers</TabsTrigger>
     </Link>
     <Link href={`/admin/students`}>
-    <TabsTrigger value="students">students</TabsTrigger>
+    <TabsTrigger value="students">Students</TabsTrigger>
     </Link>
     <Link href={`/admin/batches`}>
-    <TabsTrigger value="batches">batch</TabsTrigger>
+    <TabsTrigger value="batches">Batch</TabsTrigger>
     </Link>
   </TabsList>
   <TabsContent value="dashboard">{children}</TabsContent>
