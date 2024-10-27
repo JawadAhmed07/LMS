@@ -1,10 +1,15 @@
+import { BatchesTable } from "@/components/DataTables/BatchTable";
+import { BatchModal } from "@/components/Dialogs/BatchModal";
 
 
 export default function batches(){
     return(
         <div className="min-h-screen p-10">
-            <h1 className="text-4xl font-bold">batches Page</h1>
-            <p>Welcome to the batches section</p>
+           <div className="flex justify-between">
+            <h1 className="text-3xl font-bold text-center">Batches Page</h1>
+            <BatchModal/>
+            </div>
+            <BatchesTable/>
         </div>
     )
 }
