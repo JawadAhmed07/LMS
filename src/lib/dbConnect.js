@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 
-export async function connectDb() {
+export async function connectDb () {
   try {
     let connection;
-    console.log("connection?.connection=>", connection?.connection);
+    // console.log("connection?.connection=>", connection?.connection);
     if (connection?.connection?.readyState != 1) {
       connection = await mongoose.connect(process.env.MONGODB_URI);
       console.log("DB Connected");
