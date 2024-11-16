@@ -1,4 +1,9 @@
-export default function Home() {
+import Link from "next/link";
+import { auth, signOut } from "../../auth";
+import { Button } from "@/components/ui/button";
+
+export default async function Home() {
+  const session =await auth()
   return (
     <div className="min-h-screen bg-gray-50 font-sans">
       {/* Header */}
@@ -6,10 +11,28 @@ export default function Home() {
         <div className="container mx-auto flex justify-between items-center px-4 py-4">
           <h1 className="text-2xl font-bold text-blue-600">LMS</h1>
           <nav className="space-x-6">
-            <a href="#features" className="text-gray-700 hover:text-blue-600">Features</a>
+            {/* <a href="#features" className="text-gray-700 hover:text-blue-600">Features</a>
             <a href="#courses" className="text-gray-700 hover:text-blue-600">Courses</a>
             <a href="#testimonials" className="text-gray-700 hover:text-blue-600">Testimonials</a>
-            <a href="#contact" className="text-gray-700 hover:text-blue-600">Contact</a>
+            <a href="#contact" className="text-gray-700 hover:text-blue-600">Contact</a> */}
+        {
+          session? <div className="flex gap-5">
+            <h1>
+            {session.user.email}
+            </h1>
+            <form
+             action={async () => {
+               "use server"
+               await signOut("google")
+             }}
+           >
+             <Button type="submit">SignOut</Button>
+           </form>
+    
+          </div>
+          :
+          <Link href={"/SignIn"}><Button>SignIn</Button></Link>
+        }
           </nav>
         </div>
       </header>
@@ -20,7 +43,7 @@ export default function Home() {
           <h2 className="text-4xl font-bold mb-4">Welcome to Your Learning Hub</h2>
           <p className="text-lg mb-6">Discover the easiest way to learn and grow your skills.</p>
           <button className="px-6 py-3 bg-white text-blue-600 rounded-md font-semibold hover:bg-gray-200">
-            Get Started
+            Start Learning journey
           </button>
         </div>
       </section>
