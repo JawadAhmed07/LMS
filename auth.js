@@ -37,6 +37,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     return {...profile,role:user.role};
   },
 
-  
+  // maintaining github
 },
 })
