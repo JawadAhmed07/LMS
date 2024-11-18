@@ -137,7 +137,7 @@ function Testimonial({ name, quote }) {
   return (
     <AnimatedSection>
       <div className="bg-white text-black p-8 shadow-lg rounded-lg">
-        <p className="italic text-lg mb-4">"{quote}"</p>
+        <p className="italic text-lg mb-4"> {quote}</p>
         <p className="font-semibold text-gray-800">{name}</p>
       </div>
     </AnimatedSection>
