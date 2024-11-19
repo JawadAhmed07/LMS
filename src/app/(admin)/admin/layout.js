@@ -9,6 +9,9 @@ export default function Layout({ children }) {
       <TabsList
         TabsList className="w-full justify-around">
         <div>
+        <Link href={`/`}>
+          <TabsTrigger value="home">Home</TabsTrigger>
+        </Link>
         <Link href={`/admin/dashboard`}>
           <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
         </Link>
@@ -27,6 +30,7 @@ export default function Layout({ children }) {
         </div>
         <ModeToggle />
       </TabsList>
+      <TabsContent value="home">{children}</TabsContent>
       <TabsContent value="dashboard">{children}</TabsContent>
       <TabsContent value="courses">{children}</TabsContent>
       <TabsContent value="trainers">{children}</TabsContent>

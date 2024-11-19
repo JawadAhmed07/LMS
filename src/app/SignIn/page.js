@@ -14,6 +14,17 @@ export default async function SignIn() {
                await signIn("google")
              }}
            >
+            <input className="border p-2" placeholder="Enter your email" name="email"/>
+            <input className="border p-2" placeholder="Enter your password" name="password"/>
+           </form>
+           <Button type="submit">Login to continue</Button>
+    
+           <form
+             action={async () => {
+               "use server"
+               await signIn("google")
+             }}
+           >
              <Button type="submit">Signin with Google</Button>
            </form>
     

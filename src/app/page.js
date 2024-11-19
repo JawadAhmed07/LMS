@@ -1,49 +1,26 @@
 // Import necessary modules and components
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { signOut, auth } from "../../auth";
+import auth from "../../auth";
 import { AnimatedSection } from "@/components/animatedsection";
+import Header from "@/components/header";
 
 // Main Page Component
 export default async function Home() {
   const session = await auth();
+  console.log("session=>", session)
 
   return (
     <div className="min-h-screen bg-gray-100 font-sans">
       {/* Header */}
-      <header className="bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md">
-        <div className="container mx-auto flex justify-between items-center px-8 py-6">
-          <h1 className="text-3xl font-bold">LMS</h1>
-          <nav className="space-x-6">
-            {session ? (
-              <div className="flex gap-4 items-center">
-                <h1 className="text-lg">{session.user.email}</h1>
-                <form
-                  action={async () => {
-                    "use server";
-                    await signOut("google");
-                  }}
-                >
-                  <Button type="submit" className="bg-white text-blue-600 rounded-md hover:bg-gray-200">SignOut</Button>
-                </form>
-              </div>
-            ) : (
-              <Link href="/SignIn">
-                <Button className="bg-white text-blue-600 hover:bg-gray-200 rounded-md">SignIn</Button>
-              </Link>
-            )}
-          </nav>
-        </div>
-      </header>
+     <Header/>
 
       {/* Hero Section */}
       <AnimatedSection>
         <div className="container mx-auto text-center py-16 px-8">
           <h2 className="text-5xl font-extrabold text-gray-800 mb-4">Welcome to Your Learning Hub</h2>
           <p className="text-xl text-gray-600 mb-6">Discover the easiest way to learn and grow your skills with us.</p>
-          <button className="px-8 py-4 bg-blue-100 text-white rounded-md font-semibold hover:bg-blue-700 transition duration-300">
-            Start Learning Journey
-          </button>
+          <Button>Start learning Journey</Button>
         </div>
       </AnimatedSection>
 
@@ -88,7 +65,7 @@ export default async function Home() {
         <div className="container mx-auto text-center">
           <h3 className="text-4xl font-bold text-gray-800 mb-12">What Our Students Say</h3>
           <div className="grid md:grid-cols-2 gap-12 ">
-            <Testimonial  name="John Doe" quote="This LMS changed my life! I learned so much in such a short time." />
+            <Testimonial name="John Doe" quote="This LMS changed my life! I learned so much in such a short time." />
             <Testimonial name="Jane Smith" quote="The best platform for learning, the courses are practical and easy to follow." />
           </div>
         </div>
