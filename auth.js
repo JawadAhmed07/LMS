@@ -1,13 +1,12 @@
-import { connectDb } from "@/lib/dbConnect"
+import { connectDb } from "@/lib/dbConnect";
 import { UserModal } from "@/lib/modals/UserModal";
-import NextAuth from "next-auth"
-import Google from "next-auth/providers/google"
+import NextAuth from "next-auth";
+import Google from "next-auth/providers/google";
+import Credentials from "next-auth/providers/credentials";
 
-const handleLoginuser = async (profile) => {
+const handleLoginUser = async (profile) => {
   await connectDb();
-
-  const user = await UserModal.findOne({ email: profile.email })
-
+  const user = await UserModal.findOne({ email: profile.email });
   if (user) {
     return user;
   } else {
@@ -15,65 +14,69 @@ const handleLoginuser = async (profile) => {
       fullname: profile.name,
       email: profile.email,
       provider: "google",
-      profileImage: profile.picture,
+      profileImg: profile.picture,
     };
-    let newUser = await new UserModal(obj)
-    newUser = await newUser.save()
+    let newUser = await new UserModal(obj);
+    newUser = await newUser.save();
     return newUser;
-
   }
-
-}
+};
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-
-  providers: [Google,
-    credentials({
+  providers: [
+    Google,
+    Credentials({
       credentials: {
         email: {},
         password: {},
       },
       authorize: async (credentials) => {
-        let user = null
-        console.log("credentials=>",credentials)
- 
-        // logic to salt and hash password
-        // const pwHash = saltAndHashPassword(credentials.password)
- 
-        // logic to verify if the user exists
-        // user = await getUserFromDb(credentials.email, pwHash)
- 
-        // if (!user) {
-          // No user found, so this is their first attempt to login
-          // Optionally, this is also the place you could do a user registration
-          // throw new Error("Invalid credentials.")
-        }
- 
-        // return user object with their profile data
-        // return user
-      // },
+        let user = null;
+        console.log("credentials=>", credentials);
+
+        // let res = await fetch(
+        //   `https://lms-eta-nine.vercel.app/api/user/login`,
+        //   {
+        //     method: "POST",
+        //     body: JSON.stringify({
+        //       email: credentials.email,
+        //       password: credentials.password,
+        //     }),
+        //   }
+        // );
+        // res = await res.json();
+        // user = res.user;
+        return user;
+      },
     }),
   ],
   callbacks: {
     async signIn({ account, profile }) {
-      console.log("account=>", account)
-      console.log("profile=>", profile)
+      console.log("account=>", account);
+      if (account.provider == "google") {
+        console.log("profile=>", profile);
+        const user = await handleLoginUser(profile);
 
-      const user = await handleLoginuser(profile);
-      return { ...profile, role: user.role };
+        return { ...profile, role: user.role }; // Do different verification for other providers that don't have `email_verified`
+      }
+      return true;
     },
     async jwt({ token }) {
-      console.log("token=>", token)
-      const user = await handleLoginuser(token)
-      console.log("user in JWT=>", user)
-      token.role=user.role;
-      token._id=user._id;
+      console.log("token=>", token);
+      const user = await handleLoginUser(token);
+      console.log("user in the JWT=>", user);
+      token.role = user.role;
+      token._id = user._id;
+      token.picture = user?.profileImg;
+      token.fullname = user?.fullname;
       return token;
     },
     session({ session, token }) {
-      session.user._id = token.id;
+      session.user._id = token._id;
       session.user.role = token.role;
+      session.user.image = token.picture;
+      session.user.name = token.fullname;
       return session;
-    }
+    },
   },
-})
+});

@@ -7,8 +7,7 @@ import Header from "@/components/header";
 
 // Main Page Component
 export default async function Home() {
-  const session = await auth();
-  console.log("session=>", session)
+  
 
   return (
     <div className="min-h-screen bg-gray-100 font-sans">
