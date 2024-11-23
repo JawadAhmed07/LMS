@@ -1,8 +1,8 @@
-import { connectDb } from "@/lib/dbConnect";
 import { UserModal } from "@/lib/modals/UserModal";
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
+import { connectDb } from "@/lib/dbConnect";
 
 const handleLoginUser = async (profile) => {
   await connectDb();
@@ -34,18 +34,18 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         let user = null;
         console.log("credentials=>", credentials);
 
-        // let res = await fetch(
-        //   `https://lms-eta-nine.vercel.app/api/user/login`,
-        //   {
-        //     method: "POST",
-        //     body: JSON.stringify({
-        //       email: credentials.email,
-        //       password: credentials.password,
-        //     }),
-        //   }
-        // );
-        // res = await res.json();
-        // user = res.user;
+        let res = await fetch(
+          `full-stack-lms-flame.vercel.app/api/user/login`,
+          {
+            method: "POST",
+            body: JSON.stringify({
+              email: credentials.email,
+              password: credentials.password,
+            }),
+          }
+        );
+        res = await res.json();
+        user = res.user;
         return user;
       },
     }),
@@ -53,7 +53,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   callbacks: {
     async signIn({ account, profile }) {
       console.log("account=>", account);
-      if (account.provider == "google") {
+      console.log("profile=>", profile);
+      if (account?.provider === "google") {
         console.log("profile=>", profile);
         const user = await handleLoginUser(profile);
 

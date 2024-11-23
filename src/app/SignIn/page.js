@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { auth, signIn } from "../../../auth";
+import { signIn, auth } from "../../../auth";
 
 export default async function SignIn() {
   const session = await auth();
