@@ -10,7 +10,7 @@ export default function UserDropdown({ session }) {
     <DropdownMenu>
       <DropdownMenuTrigger>
         <Avatar>
-          <AvatarImage src={session.user.profileImg } alt="User Avatar" />
+          <AvatarImage src={session.user.picture || "/default-avatar.png"} alt="User Avatar" />
           <AvatarFallback>{session.user.name?.charAt(0) || "U"}</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
