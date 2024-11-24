@@ -8,7 +8,7 @@ export default async function SignIn() {
 
   return (
     <div className="container min-h-screen mx-auto flex flex-col gap-4 justify-center items-center">
-      <form
+      {/* <form
         className="flex flex-col gap-3 shadow p-3"
         action={async (formData) => {
           "use server";
@@ -30,7 +30,7 @@ export default async function SignIn() {
         <button className="border p-1 px-2" type="submit">
           Login
         </button>
-      </form>
+      </form> */}
 
       <form
         action={async () => {
