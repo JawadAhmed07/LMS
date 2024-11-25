@@ -1,28 +1,26 @@
 import { connectDb } from "@/lib/dbConnect";
-import { courseModal } from "@/lib/modals/courseModal";
+import { CourseModal } from "@/lib/modals/courseModal";
 
 export async function POST(request) {
-    await connectDb();
-    const obj = await request.json();
-    let newCourse = new courseModal({ ...obj });
-    newCourse = await newCourse.save();
+  await connectDb();
+  const obj = await request.json();
+  let newCourse = new CourseModal({ ...obj });
+  newCourse = await newCourse.save();
 
-    return Response.json({
-        error: false,
-        msg: "Course added successfully",
-        course: newCourse,
-    })
+  return Response.json({
+    error: false,
+    msg: "Course Added Successfully",
+    course: newCourse,
+  });
 }
 
-export async function GET(request) {
-    await connectDb();
+export async function GET() {
+  await connectDb();
 
-    const courses = await courseModal.find()
-    return Response.json(
-        {
-            error: false,
-            msg: "Course fetched successfully",
-            course: newCourse,
-        }
-    )
+  const courses = await CourseModal.find();
+  return Response.json({
+    error: false,
+    msg: "Course Fetched Successfully",
+    courses: courses,
+  });
 }
