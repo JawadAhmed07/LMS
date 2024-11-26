@@ -1,29 +1,26 @@
-import { Description } from "@radix-ui/react-dialog"
-import mongoose, { mongo } from "mongoose"
+import mongoose from "mongoose";
 
+const { Schema } = mongoose;
 
-const { Schema } = mongoose
-
-const BatchSchema = new Schema(
-    {
-        title:{type:String},
-        description:String,
-        course:{type:mongoose.Types.ObjectId,ref:"Course"},
-        status:{
-            type:String,
-            default:"Pending",
-            enum:[
-                "Pending",
-                "Admission-open",
-                "Admission-closed",
-                "Completed"
-            ],
-        },
+const batchSchema = new Schema(
+  {
+    title: { type: String },
+    description: String,
+    course: { type: mongoose.Types.ObjectId, ref: "Course" },
+    status: {
+      type: String,
+      default: "pending",
+      enum: [
+        "pending",
+        "admission-open",
+        "admission-close",
+        "ongoing",
+        "completed",
+      ],
     },
-    {
-        timestamps:true,
-    }
-)
+  },
+  { timestamps: true }
+);
 
-export const batchModel=
-mongoose.models.Batch|| mongoose.models("Batch",BatchSchema)
+export const BatchModal =
+  mongoose.models.Batch || mongoose.model("Batch", batchSchema);
