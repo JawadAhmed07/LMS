@@ -9,6 +9,7 @@ const courseSchema = new Schema(
     duration: String,
     eligibility: [String],
     thumbnail: String,
+    // ponka:String
   },
   { timestamps: true }
 );
