@@ -17,7 +17,7 @@ export async function POST(request) {
 export async function GET() {
   await connectDb();
 
-  const courses = await CourseModal.find();
+  const courses = await CourseModal.find({ title: "web development" });
   return Response.json({
     error: false,
     msg: "Course Fetched Successfully",
