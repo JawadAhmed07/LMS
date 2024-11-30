@@ -1,9 +1,15 @@
 import { ModeToggle } from "@/components/mode-toggle"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Link from "next/link"
+import { auth } from "../../../../auth"
+import { redirect } from "next/navigation"
 
 
-export default function Layout({ children }) {
+export default async function Layout({ children }) {
+const session= await auth()
+if(session?.user.role!="admin") redirect("/")
+
+
   return (
     <Tabs defaultValue="account" className="w-full">
       <TabsList

@@ -31,4 +31,3 @@ const batches = await BatchModal.find({ title: "web development" }).populate("co
     batches,
   });
 }
-// no work done todatg
