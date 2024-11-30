@@ -3,7 +3,7 @@ import { signIn, auth } from "../../../auth";
 
 export default async function SignIn() {
   const session = await auth();
-  console.log("session=>", session);
+  // console.log("session=>", session);
   if (session) redirect("/");
 
   return (

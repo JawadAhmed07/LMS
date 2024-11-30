@@ -63,9 +63,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return true;
     },
     async jwt({ token }) {
-      console.log("token=>", token);
+      // console.log("token=>", token);
       const user = await handleLoginUser(token);
-      console.log("user in the JWT=>", user);
+      // console.log("user in the JWT=>", user);
       token.role = user.role;
       token._id = user._id;
       token.picture = user?.profileImg;

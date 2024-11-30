@@ -3,7 +3,7 @@ import UserDropdown from "./UserDropdown"; // Client Component for dropdown
 
 export default async function Header() {
   const session = await auth();
-  console.log("session=>", session)
+  // console.log("session=>", session)
 
   return (
     <header className="bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md">
