@@ -97,23 +97,6 @@ function BatchForm({ className }) {
                 </Select>
             </div>
             <div className="grid gap-2">
-                <Label htmlFor="trainer">Trainer</Label>
-                <Select>
-                    <SelectTrigger>
-                        <SelectValue placeholder="Select trainer" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="trainer1">Trainer 1</SelectItem>
-                        <SelectItem value="trainer2">Trainer 2</SelectItem>
-                        <SelectItem value="trainer3">Trainer 3</SelectItem>
-                    </SelectContent>
-                </Select>
-            </div>
-            <div className="grid gap-2">
-                <Label htmlFor="students">Number of Students</Label>
-                <Input required id="students" type="number" defaultValue="" />
-            </div>
-            <div className="grid gap-2">
                 <Label htmlFor="course">Course</Label>
                 <Select>
                     <SelectTrigger>
