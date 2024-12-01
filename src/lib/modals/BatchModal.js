@@ -16,7 +16,6 @@ const batchSchema = new Schema(
         "admission-close",
         "ongoing",
         "completed",
-        // error messages
       ],
     },
   },
@@ -24,5 +23,4 @@ const batchSchema = new Schema(
 );
 
 export const BatchModal =
-  mongoose.models.Batch || mongoose.model("Batch", batchSchema);
-  // maintaining github
+  mongoose.models.Batches || mongoose.model("Batches", batchSchema);

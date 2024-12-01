@@ -10,14 +10,14 @@ export async function POST(request) {
   return Response.json({
     error: false,
     msg: "Course Added Successfully",
-    course: newCourse,
+    courses: newCourse,
   });
 }
 
 export async function GET() {
   await connectDb();
 
-  const courses = await CourseModal.find({ title: "web development" });
+  const courses = await CourseModal.find();
   return Response.json({
     error: false,
     msg: "Course Fetched Successfully",

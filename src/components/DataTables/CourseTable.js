@@ -71,7 +71,7 @@ export const columns = [
       );
     },
     cell: ({ row }) => (
-      <Image src={row.getValue("thumbnail")} height={50} width={80} />
+      <Image src={row.getValue("thumbnail")} height={50} width={80}  alt="Course thumbnail"/>
     ),
   },
   {

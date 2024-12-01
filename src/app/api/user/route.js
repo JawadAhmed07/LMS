@@ -11,9 +11,9 @@ import jwt from "jsonwebtoken";
 export async function POST(request) {
     await connectDb();
     const obj = await request.json();
-    // console.log("Obj is this=>", obj)
+    console.log("Obj is this=>", obj)
     const user = await UserModal.findOne({ email: obj.email });
-    // console.log("users=>", user)
+    console.log("users=>", user)
     if (user)
         return Response.json(
             {
