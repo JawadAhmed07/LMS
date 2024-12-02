@@ -153,22 +153,22 @@ export function BatchesTable({ data }) {
   return (
     <div className="w-full">
       <div className="flex items-center py-4">
-        {/* <Input
+        <Input
           placeholder="Filter by Batch Name..."
-          value={table.getColumn("course")?.getFilterValue() ?? ""}
+          value={table.getColumn("title")?.getFilterValue() ?? ""}
           onChange={(event) =>
-            table.getColumn("course")?.title?.setFilterValue(event.target.value)
+            table.getColumn("title")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
-        /> */}
-        <Input
+        />
+        {/* <Input
           placeholder="Filter by Course Name..."
-          value={table.getColumn("course")?.getFilterValue() ?? ""}
+          value={table.getColumn("courseName")?.getFilterValue() ?? ""}
           onChange={(event) =>
-            table.getColumn("course")?.setFilterValue(event.target.value)
+            table.getColumn("courseName")?.setFilterValue(event.target.value)
           }
           className="max-w-sm ml-2"
-        />
+        /> */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">

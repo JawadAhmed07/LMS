@@ -14,6 +14,7 @@ export async function addBatches(formData) {
     description: formData.get("description"),
     course:formData.get("course")
   };
+  console.log("Object=>",obj);
 
   const course = await fetch(`${process.env.BASE_URL}api/batches`, {
     method: "POST",
