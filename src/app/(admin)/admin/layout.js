@@ -7,7 +7,7 @@ import { redirect } from "next/navigation"
 
 export default async function Layout({ children }) {
 const session= await auth()
-if(session?.user.role!="admin") redirect("/")
+// if(session?.user.role!="admin") redirect("/")
 
 
   return (
