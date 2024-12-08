@@ -12,4 +12,3 @@ export async function connectDb () {
     console.log("err=>", err);
   }
 }
-// .env file error
