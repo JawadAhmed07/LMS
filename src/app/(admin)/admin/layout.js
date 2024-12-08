@@ -13,7 +13,7 @@ const session= await auth()
   return (
     <Tabs defaultValue="account" className="w-full">
       <TabsList
-        TabsList className="w-full justify-around">
+         className="w-full justify-around">
         <div>
         <Link href={`/`}>
           <TabsTrigger value="home">Home</TabsTrigger>
