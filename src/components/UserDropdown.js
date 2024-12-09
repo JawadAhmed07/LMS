@@ -7,6 +7,7 @@ import Link from "next/link";
 
 export default function UserDropdown({ session }) {
   return session ? (
+    // miantaining github
     <DropdownMenu>
       <DropdownMenuTrigger>
         <Avatar>
